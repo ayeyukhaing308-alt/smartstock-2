@@ -1,0 +1,11 @@
+/* SmartStock print styles (receipts, invoices, reports) */
+/* ---------- Print (receipts, invoices, reports) ---------- */
+@media print {
+  body.printing-receipt > *:not(#modalRoot) { display: none !important; }
+  body.printing-receipt { background: #fff; }
+  body.printing-receipt .modal-back { position: static; background: none; backdrop-filter: none; padding: 0; display: block; animation: none; }
+  body.printing-receipt .modal { box-shadow: none; border: 0; max-height: none; padding: 0; width: auto; overflow: visible; animation: none; }
+  body.printing-receipt .modal h2, body.printing-receipt .modal-actions, body.printing-receipt .no-print { display: none !important; }
+  body.printing-receipt .receipt-preview { padding: 0; background: none; overflow: visible; }
+  body.printing-receipt .receipt { box-shadow: none; margin: 0; }
+}
