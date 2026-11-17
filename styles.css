@@ -410,7 +410,7 @@ th[aria-sort] .th-btn { color: var(--purple-deep); }
 
 
 /* Manual product order buttons */
-.order-btns { display: inline-flex; gap: 2px; }
+.order-btns { display: inline-flex; gap: 4px; justify-content: flex-end; }
 .icon-btn.ord { height: 32px; min-width: 32px; padding: 0; border: 1px solid var(--border); background: var(--surface); }
 .icon-btn.ord:hover { background: var(--purple-soft); color: var(--purple-deep); border-color: var(--purple-bright); }
 @media (max-width: 700px) { .icon-btn.ord { height: 38px; min-width: 38px; } }

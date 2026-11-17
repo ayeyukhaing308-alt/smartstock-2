@@ -4,7 +4,7 @@
  * Same-origin files are fetched network-first, so editing code during development (Live Server) still shows your
  * changes while online. Fonts are cached the first time they load online, so they are not guaranteed offline before that.
  */
-const VERSION = 'smartstock-shell-v25';
+const VERSION = 'smartstock-shell-v26';
 const FONTS = 'smartstock-fonts-v1';
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'styles.css', 'print.css', 'app.js', 'icon-192.png', 'icon-512.png', 'icon-maskable-512.png', 'favicon-32.png', 'apple-touch-icon.png'];
 
