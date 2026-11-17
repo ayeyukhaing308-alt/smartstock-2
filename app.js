@@ -43,6 +43,8 @@
     'chevron-right': '<path d="m9 18 6-6-6-6"/>',
     'chevron-down': '<path d="m6 9 6 6 6-6"/>',
     'chevron-up': '<path d="m18 15-6-6-6 6"/>',
+    'chevrons-up': '<path d="m17 11-5-5-5 5"/><path d="m17 18-5-5-5 5"/>',
+    'chevrons-down': '<path d="m7 6 5 5 5-5"/><path d="m7 13 5 5 5-5"/>',
     'arrow-right': '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
     'panel-left-close': '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m16 15-3-3 3-3"/>',
     'panel-left-open': '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 3v18"/><path d="m14 9 3 3-3 3"/>',
@@ -406,7 +408,7 @@
           cfg.selectable ? el('td', null, el('input', { type: 'checkbox', 'aria-label': 'Select row', checked: st.selected.has(r[rk]),
             onchange: (e) => { e.target.checked ? st.selected.add(r[rk]) : st.selected.delete(r[rk]); notify(); } })) : null,
           cfg.columns.map((c) => el('td', { class: c.num ? 'num' : '' }, c.render ? c.render(r) : r[c.key]))));
-        wrap.append(el('div', { class: 'table-wrap' + (cfg.scroll ? ' scrolly' : ''), tabindex: cfg.scroll ? 0 : null }, el('table', null, el('thead', null, head), el('tbody', null, body))),
+        wrap.append(el('div', { class: 'table-wrap' }, el('table', null, el('thead', null, head), el('tbody', null, body))),
           el('div', { class: 'pager' },
             el('span', { class: 'small muted' }, `${st.page * size + 1}–${st.page * size + slice.length} / ${all.length}`),
             cfg.scroll ? null : el('div', { class: 'btn-row' },
@@ -451,6 +453,7 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
 
 ;
 ;(function(){window.SmartStock.i18n.addPhrases({"Catalog": "ကုန်ပစ္စည်းစာရင်း", "Trade": "ရောင်းဝယ်ရေး", "Finance": "ငွေကြေး", "Expand sidebar": "မီနူးကို ဖြန့်မည်", "Collapse": "ခေါက်မည်", "Switch to dark mode": "အမှောင်မုဒ်သို့ ပြောင်းမည်", "Switch to light mode": "အလင်းမုဒ်သို့ ပြောင်းမည်", "Account menu": "အကောင့်မီနူး", "Breadcrumb": "လမ်းကြောင်း", "Loading": "ဖွင့်နေသည်", "Inventory & POS": "လက်ကျန်စာရင်းနှင့် POS", "Previous page": "ယခင်စာမျက်နှာ", "Next page": "နောက်စာမျက်နှာ", "vs yesterday": "မနေ့ကနှင့် နှိုင်းယှဉ်", "{} units in stock": "စတော့တွင် {} ယူနစ်", "Show cost (admin PIN)": "ကုန်ကျစရိတ်ပြရန် (admin PIN)", "Total stock value": "စတော့တန်ဖိုးစုစုပေါင်း", "Today's sales": "ယနေ့ရောင်းချမှု", "Monthly sales": "ယခုလ ရောင်းချမှု", "Total profit": "အမြတ်စုစုပေါင်း", "Low stock products": "စတော့နည်းသော ကုန်ပစ္စည်းများ", "{} sale(s)": "ရောင်းချမှု {} ခု", "{} sale(s) this month": "ယခုလ ရောင်းချမှု {} ခု", "{} out of stock": "ကုန်နေသည် {} ခု", "View inventory": "လက်ကျန်ပစ္စည်းကြည့်ရန်", "Period summary": "ကာလအနှစ်ချုပ်", "Sales overview": "ရောင်းချမှုခြုံငုံသုံးသပ်ချက်", "Revenue trends": "ဝင်ငွေလမ်းကြောင်း", "Profit analysis": "အမြတ်ခွဲခြမ်းစိတ်ဖြာမှု", "Last 8 weeks": "နောက်ဆုံး ရက်သတ္တပတ် ၈ ပတ်", "Product category distribution": "ကုန်ပစ္စည်းအမျိုးအစားခွဲဝေမှု", "Stock level overview": "စတော့အဆင့်ခြုံငုံသုံးသပ်ချက်", "Low & out of stock": "စတော့နည်း/ကုန်နေသော ပစ္စည်းများ", "Profit figures are hidden": "အမြတ်ကိန်းဂဏန်းများကို ဖျောက်ထားသည်", "{} products": "ကုန်ပစ္စည်း {} ခု", "No sales in the last 30 days": "ရက် ၃၀ အတွင်း ရောင်းချမှု မရှိပါ", "No sales in the last 8 weeks": "ရက်သတ္တပတ် ၈ ပတ်အတွင်း ရောင်းချမှု မရှိပါ"});})();
+;(function(){window.SmartStock.i18n.addPhrases({"Order": "အစီအစဉ်", "Move to top": "ထိပ်ဆုံးသို့ ရွှေ့မည်", "Move up": "အပေါ်သို့ ရွှေ့မည်", "Move down": "အောက်သို့ ရွှေ့မည်", "Move to bottom": "အောက်ဆုံးသို့ ရွှေ့မည်", "Move selected to top": "ရွေးထားသည်များကို ထိပ်ဆုံးသို့", "Move selected to bottom": "ရွေးထားသည်များကို အောက်ဆုံးသို့", "Already at the top.": "အပေါ်ဆုံးရောက်နေပြီ။", "Already at the bottom.": "အောက်ဆုံးရောက်နေပြီ။", "Moved to the top.": "ထိပ်ဆုံးသို့ ရွှေ့ပြီးပါပြီ။", "Moved to the bottom.": "အောက်ဆုံးသို့ ရွှေ့ပြီးပါပြီ။"});})();
 /* SmartStock — storage.js
  * Persistent storage on IndexedDB behind a SYNCHRONOUS read/write API:
  *  - all collections are loaded into memory once at start (await SS.storage.init()); reads are instant
@@ -1676,7 +1679,26 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
     return v;
   }
   const raw = (id) => SS.storage.collection.byId('products', id);
-  const views = () => SS.storage.read('products').map(view);
+  /* Manual product order: products carry an optional sortOrder; products without one stay in the order they were added (after the ordered ones). */
+  const orderKey = (p, i) => (p.sortOrder != null ? p.sortOrder : 1e9 + i);
+  const ordered = () => SS.storage.read('products').map((p, i) => [p, i]).sort((a, b) => orderKey(a[0], a[1]) - orderKey(b[0], b[1]) || a[1] - b[1]).map((x) => x[0]);
+  const views = () => ordered().map(view);
+  function saveOrder(ids) {
+    const pos = new Map(ids.map((id, i) => [id, i]));
+    SS.storage.write('products', SS.storage.read('products').map((p) => (pos.has(p.id) && p.sortOrder !== pos.get(p.id) ? Object.assign({}, p, { sortOrder: pos.get(p.id) }) : p)));
+  }
+  /** where: 'top' | 'bottom' (any number of products) | 'up' | 'down' (one product, relative to the neighbour in the visible list) */
+  function moveProducts(ids, where, visible) {
+    const all = ordered().map((p) => p.id); const set = new Set(ids);
+    const moved = all.filter((id) => set.has(id)); const rest = all.filter((id) => !set.has(id)); let next;
+    if (where === 'top') next = moved.concat(rest);
+    else if (where === 'bottom') next = rest.concat(moved);
+    else {
+      const id = ids[0]; const vi = visible.indexOf(id); const nb = visible[where === 'up' ? vi - 1 : vi + 1]; if (nb == null) return false;
+      next = all.filter((x) => x !== id); const at = next.indexOf(nb); next.splice(where === 'up' ? at : at + 1, 0, id);
+    }
+    saveOrder(next); return true;
+  }
 
   /* ---------- Images (IndexedDB) ---------- */
   const images = {
@@ -1999,6 +2021,12 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
       return views().filter((p) => (st.archived === 'all' || (p.status || 'active') === st.archived) && (!st.cat || p.categoryId === st.cat) && (!st.stock || SS.inventory.stockStatus(p) === st.stock)
         && (!q || (p.name + ' ' + p.sku + ' ' + (p.barcode || '') + ' ' + (p.brand || '')).toLowerCase().includes(q)));
     }
+    function reorder(ids, where) {
+      const y = window.scrollY;
+      if (!moveProducts(ids, where, rows().map((p) => p.id))) return SS.utils.toast(where === 'up' ? 'Already at the top.' : 'Already at the bottom.', 'info');
+      draw(); window.scrollTo(0, y);
+    }
+    const ob = (ico, label, where, p) => el('button', { type: 'button', class: 'icon-btn ord', 'aria-label': label, title: label, onclick: () => reorder([p.id], where) }, SS.icons.make(ico, 16));
     function draw() {
       const cn = cats();
       table = ui.dataTable({ rows: rows(), scroll: true, selectable: true, onSelect: (s) => { selected = s; bulkInfo.textContent = s.length ? s.length + ' selected' : ''; }, empty: { title: 'No products found', hint: 'Add your first product with “+ New product”, or adjust the filters.' }, columns: [
@@ -2009,6 +2037,7 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
         { key: 'wholesalePrice', label: 'Wholesale price', num: true, sortValue: (p) => (p.wholesalePrice != null ? p.wholesalePrice : -1), render: (p) => (p.wholesalePrice != null ? formatMMK(p.wholesalePrice) : el('span', { class: 'muted' }, '—')) },
         { key: 'stock', label: 'Stock', num: true, sortValue: (p) => Number(p.stock) || 0, render: (p) => formatQty(p.stock) + ' ' + SS.inventory.unitOf(p) },
         { key: 'status', label: 'Status', sortValue: (p) => (p.status === 'archived' ? 'z' : SS.inventory.stockStatus(p)), render: (p) => p.status === 'archived' ? ui.badge('Archived', 'warning') : { out: ui.badge('Out', 'danger'), low: ui.badge('Low', 'warning'), ok: ui.badge('In stock', 'success') }[SS.inventory.stockStatus(p)] },
+        { key: 'order', label: 'Order', sortable: false, render: (p) => el('div', { class: 'order-btns' }, ob('chevrons-up', 'Move to top', 'top', p), ob('chevron-up', 'Move up', 'up', p), ob('chevron-down', 'Move down', 'down', p), ob('chevrons-down', 'Move to bottom', 'bottom', p)) },
         { key: 'act', label: '', sortable: false, render: (p) => el('div', { class: 'row-actions' }, el('button', { class: 'btn sm', type: 'button', onclick: () => openForm(p.id, draw) }, 'Edit'),
           el('button', { class: 'btn xs', type: 'button', onclick: async () => { const a = p.status !== 'archived'; if (a && !(await SS.utils.confirmDialog('Archive product?', `“${p.name}” will be hidden from lists and POS but stays in all past sales and reports.`, 'Archive'))) return; setArchived(p.id, a); draw(); } }, p.status === 'archived' ? 'Restore' : 'Archive')) }] });
       clear(holder); holder.append(table.node);
@@ -2025,7 +2054,9 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
       el('div', { class: 'btn-row' }, el('button', { class: 'btn primary', type: 'button', onclick: () => openForm(null, draw) }, '+ New product'))),
       el('div', { class: 'toolbar' }, search, catSel, stockSel, archSel),
       el('div', { class: 'toolbar' }, el('button', { class: 'btn sm', type: 'button', onclick: () => openBulkPrice(selected, draw) }, 'Bulk price update'), el('button', { class: 'btn sm', type: 'button', onclick: () => openBulkStock(selected, draw) }, 'Bulk stock adjust'),
-        el('button', { class: 'btn sm', type: 'button', onclick: () => SS.barcode.openLabels(selected.map((id) => raw(id)).filter(Boolean).map(view)) }, 'Print barcode labels'), bulkInfo), holder);
+        el('button', { class: 'btn sm', type: 'button', onclick: () => SS.barcode.openLabels(selected.map((id) => raw(id)).filter(Boolean).map(view)) }, 'Print barcode labels'),
+        el('button', { class: 'btn sm', type: 'button', onclick: () => (selected.length ? (reorder(selected, 'top'), SS.utils.toast('Moved to the top.', 'success')) : SS.utils.toast('Select products first (use the checkboxes).', 'warning')) }, SS.icons.make('chevrons-up', 16), 'Move selected to top'),
+        el('button', { class: 'btn sm', type: 'button', onclick: () => (selected.length ? (reorder(selected, 'bottom'), SS.utils.toast('Moved to the bottom.', 'success')) : SS.utils.toast('Select products first (use the checkboxes).', 'warning')) }, SS.icons.make('chevrons-down', 16), 'Move selected to bottom'), bulkInfo), holder);
     draw();
   }
 
@@ -2037,7 +2068,7 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
     SS.audit.record('product.purchase_price_changed', { type: 'product', id, label: before.name }, { previousPurchasePrice: before.purchasePrice }, { newPurchasePrice: price });
   }
 
-  SS.products = { recordPurchasePrice, view, openForm, openDetails, validate, create, update, setArchived, applyPrices, applyPriceSet, repairCosts, images, UNITS };
+  SS.products = { ordered, moveProducts, recordPurchasePrice, view, openForm, openDetails, validate, create, update, setArchived, applyPrices, applyPriceSet, repairCosts, images, UNITS };
   SS.pages = SS.pages || {}; SS.pages.products = page;
 })();
 
@@ -2668,7 +2699,7 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
 
     drawGrid = function () {
       clear(grid); const q = st.search.trim().toLowerCase();
-      const items = SS.storage.read('products').filter((p) => p.status !== 'archived' && (!st.cat || p.categoryId === st.cat) && (!q || (p.name + ' ' + p.sku + ' ' + (p.barcode || '')).toLowerCase().includes(q)));
+      const items = SS.products.ordered().filter((p) => p.status !== 'archived' && (!st.cat || p.categoryId === st.cat) && (!q || (p.name + ' ' + p.sku + ' ' + (p.barcode || '')).toLowerCase().includes(q)));
       if (!SS.storage.read('products').length) return grid.append(el('div', { class: 'empty' }, el('strong', null, 'No products yet'), 'Add products first, then sell them here.', el('div', { style: 'margin-top:10px' }, el('a', { class: 'btn primary', href: '#/products' }, 'Go to Products'))));
       if (!items.length) return grid.append(el('div', { class: 'empty' }, el('strong', null, 'No matching products'), 'Try another name, SKU or barcode.'));
       items.slice(0, 60).forEach((p) => { const status = SS.inventory.stockStatus(p);
@@ -4683,16 +4714,6 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
     if (hist) SS.sales.historyPage(root); else SS.pos.page(root);
   }
 
-  /* Floating "top / bottom" buttons on pages with a long scrolling table (Products, Inventory, Categories) */
-  function addJump() {
-    const old = document.getElementById('jumpBtns'); if (old) old.remove();
-    setTimeout(() => {
-      const box = document.querySelector('.table-wrap.scrolly'); if (!box || document.getElementById('jumpBtns')) return;
-      const go = (to) => { const r = box.getBoundingClientRect(); if (r.top < 0) window.scrollTo({ top: window.scrollY + r.top - 80, behavior: 'smooth' }); box.scrollTo({ top: to === 'top' ? 0 : box.scrollHeight, behavior: 'smooth' }); };
-      const mk = (ico, label, to) => el('button', { type: 'button', class: 'icon-btn jump', 'aria-label': label, title: label, onclick: () => go(to) }, icon(ico, 20));
-      document.body.append(el('div', { id: 'jumpBtns', class: 'jump-btns' }, mk('chevron-up', 'Go to top', 'top'), mk('chevron-down', 'Go to bottom', 'bottom')));
-    }, 60);
-  }
   function render() {
     const root = clear(main());
     const route = ROUTES.find((r) => r[0] === current) || ROUTES[0];
@@ -4704,7 +4725,6 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
       else if (current === 'settings') { root.append(el('div', { class: 'page-head' }, el('div', null, el('h1', null, t('settings'))))); SS.settings.render(root); }
       else if (current === 'activity') activityPage(root);
       else pendingPage(root, route);
-    addJump();
     } catch (e) {   // never leave a silent blank page: show what went wrong
       console.error(e);
       root.append(el('div', { class: 'card' }, el('div', { class: 'empty' }, el('strong', null, 'This page could not be shown'),

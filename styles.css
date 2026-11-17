@@ -409,12 +409,8 @@ th[aria-sort] .th-btn { color: var(--purple-deep); }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
 
 
-/* Long product lists: the table scrolls inside its card with a fixed header, plus jump buttons */
-.table-wrap.scrolly { max-height: calc(100vh - 250px); min-height: 280px; overflow: auto; overscroll-behavior: contain; scroll-behavior: smooth; }
-.table-wrap.scrolly th { position: sticky; top: 0; z-index: 2; box-shadow: 0 1px 0 var(--border); }
-.table-wrap.scrolly:focus-visible { outline-offset: -2px; }
-.jump-btns { position: fixed; right: 18px; bottom: 90px; z-index: 45; display: flex; flex-direction: column; gap: 8px; }
-.jump-btns .jump { width: 44px; height: 44px; border-radius: 50%; background: var(--surface); color: var(--purple-deep); border: 1px solid var(--border-strong); box-shadow: var(--shadow-md); }
-.jump-btns .jump:hover { background: var(--purple-soft); }
-@media (min-width: 901px) { .jump-btns { bottom: 28px; } }
-@media (max-width: 900px) { .table-wrap.scrolly { max-height: calc(100vh - 210px); } }
+/* Manual product order buttons */
+.order-btns { display: inline-flex; gap: 2px; }
+.icon-btn.ord { height: 32px; min-width: 32px; padding: 0; border: 1px solid var(--border); background: var(--surface); }
+.icon-btn.ord:hover { background: var(--purple-soft); color: var(--purple-deep); border-color: var(--purple-bright); }
+@media (max-width: 700px) { .icon-btn.ord { height: 38px; min-width: 38px; } }
