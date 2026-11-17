@@ -406,7 +406,7 @@
           cfg.selectable ? el('td', null, el('input', { type: 'checkbox', 'aria-label': 'Select row', checked: st.selected.has(r[rk]),
             onchange: (e) => { e.target.checked ? st.selected.add(r[rk]) : st.selected.delete(r[rk]); notify(); } })) : null,
           cfg.columns.map((c) => el('td', { class: c.num ? 'num' : '' }, c.render ? c.render(r) : r[c.key]))));
-        wrap.append(el('div', { class: 'table-wrap' }, el('table', null, el('thead', null, head), el('tbody', null, body))),
+        wrap.append(el('div', { class: 'table-wrap' + (cfg.scroll ? ' scrolly' : ''), tabindex: cfg.scroll ? 0 : null }, el('table', null, el('thead', null, head), el('tbody', null, body))),
           el('div', { class: 'pager' },
             el('span', { class: 'small muted' }, `${st.page * size + 1}–${st.page * size + slice.length} / ${all.length}`),
             cfg.scroll ? null : el('div', { class: 'btn-row' },
@@ -4683,6 +4683,16 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
     if (hist) SS.sales.historyPage(root); else SS.pos.page(root);
   }
 
+  /* Floating "top / bottom" buttons on pages with a long scrolling table (Products, Inventory, Categories) */
+  function addJump() {
+    const old = document.getElementById('jumpBtns'); if (old) old.remove();
+    setTimeout(() => {
+      const box = document.querySelector('.table-wrap.scrolly'); if (!box || document.getElementById('jumpBtns')) return;
+      const go = (to) => { const r = box.getBoundingClientRect(); if (r.top < 0) window.scrollTo({ top: window.scrollY + r.top - 80, behavior: 'smooth' }); box.scrollTo({ top: to === 'top' ? 0 : box.scrollHeight, behavior: 'smooth' }); };
+      const mk = (ico, label, to) => el('button', { type: 'button', class: 'icon-btn jump', 'aria-label': label, title: label, onclick: () => go(to) }, icon(ico, 20));
+      document.body.append(el('div', { id: 'jumpBtns', class: 'jump-btns' }, mk('chevron-up', 'Go to top', 'top'), mk('chevron-down', 'Go to bottom', 'bottom')));
+    }, 60);
+  }
   function render() {
     const root = clear(main());
     const route = ROUTES.find((r) => r[0] === current) || ROUTES[0];
@@ -4694,6 +4704,7 @@ window.SmartStock.i18n.addPhrases({"Search…": "ရှာဖွေရန်…"
       else if (current === 'settings') { root.append(el('div', { class: 'page-head' }, el('div', null, el('h1', null, t('settings'))))); SS.settings.render(root); }
       else if (current === 'activity') activityPage(root);
       else pendingPage(root, route);
+    addJump();
     } catch (e) {   // never leave a silent blank page: show what went wrong
       console.error(e);
       root.append(el('div', { class: 'card' }, el('div', { class: 'empty' }, el('strong', null, 'This page could not be shown'),
